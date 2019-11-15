@@ -1,0 +1,137 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+	 http://www.liquibase.org/xml/ns/dbchangelog-ext.xsd
+	 http://www.liquibase.org/xml/ns/dbchangelog
+	 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<changeSet id="1" author="serigne">
+		<comment>Creation de la table personne</comment>
+		<createTable tableName="personne">
+			<column name="idPersonne" autoIncrement="true" type="int">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="idPersonne"/>
+			</column>
+			<column name="nom" type="varchar(255)"/>
+			<column name="prenom" type="varchar(255)"/>
+			<column name="telephone" type="varchar(12)"/>
+		</createTable>
+		
+		<comment>Creation de la table maison</comment>
+		<createTable tableName="maison">
+			<column name="idMaison" autoIncrement="true" type="int">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="idMaison"/>
+			</column>
+			<column name="superficie" type="varchar(255)"/>
+			<column name="adresse" type="varchar(255)"/>
+		</createTable>
+		
+		<comment>Creation de la table possession</comment>
+		<createTable tableName="possession">
+			<column name="idPossession" autoIncrement="true" type="int">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="idMaison"/>
+			</column>
+			<column name="codePersonne" type="int"/>
+			<column name="codeMaison" type="int"/>
+			<column name="datePossession" type="date"/>
+		</createTable>
+		<addForeignKeyConstraint 
+			constraintName="fk_possession_maison" 
+			referencedTableName="maison" 
+			baseColumnNames="codeMaison" 
+			baseTableName="possession" 
+			onDelete="CASCADE" 
+			onUpdate="RESTRICT" 
+			referencedColumnNames="idMaison"/>
+		<addForeignKeyConstraint 
+			constraintName="fk_possession_personne" 
+			referencedTableName="personne" 
+			baseColumnNames="codePersonne" 
+			baseTableName="possession" 
+			onDelete="CASCADE" 
+			onUpdate="RESTRICT" 
+			referencedColumnNames="idPersonne"/>
+		
+	</changeSet>
+	
+	<changeSet id="2" author="serigne">
+		<insert tableName="personne">
+			<column name="idPersonne" value="1"/>
+			<column name="nom" value="tall"/>
+			<column name="prenom" value="amdy"/>
+			<column name="telephone" value="514-456-9999"/>
+		</insert>
+		<insert tableName="personne">
+			<column name="idPersonne" value="2"/>
+			<column name="nom" value="talla"/>
+			<column name="prenom" value="ady"/>
+			<column name="telephone" value="514-456-2999"/>
+		</insert>
+		<insert tableName="personne">
+			<column name="idPersonne" value="3"/>
+			<column name="nom" value="dia"/>
+			<column name="prenom" value="astou"/>
+			<column name="telephone" value="514-459-2999"/>
+		</insert>
+		
+		<insert tableName="maison">
+			<column name="idMaison" value="1"/>
+			<column name="superficie" value="200m2"/>
+			<column name="adresse" value="230 rue Hickson, Montreal H4G 2L5(QC)"/>
+		</insert>
+		<insert tableName="maison">
+			<column name="idMaison" value="2"/>
+			<column name="superficie" value="400m2"/>
+			<column name="adresse" value="100 rue Hickson, Montreal H4G 2L5(QC)"/>
+		</insert>
+		<insert tableName="maison">
+			<column name="idMaison" value="3"/>
+			<column name="superficie" value="500m2"/>
+			<column name="adresse" value="10 rue Hickson, Montreal H4G 2L5(QC)"/>
+		</insert>
+		<insert tableName="maison">
+			<column name="idMaison" value="4"/>
+			<column name="superficie" value="1000m2"/>
+			<column name="adresse" value="02 rue Hickson, Montreal H4G 2L5(QC)"/>
+		</insert>
+		
+		<insert tableName="possession">
+			<column name="idPossession" value="1"/>
+			<column name="codePersonne" value="1"/>
+			<column name="codeMaison" value="2"/>
+			<column name="datePossession" value="2005-10-23"/>
+		</insert>
+		<insert tableName="possession">
+			<column name="idPossession" value="2"/>
+			<column name="codePersonne" value="3"/>
+			<column name="codeMaison" value="1"/>
+			<column name="datePossession" value="2009-11-21"/>
+		</insert>
+		<insert tableName="possession">
+			<column name="idPossession" value="3"/>
+			<column name="codePersonne" value="3"/>
+			<column name="codeMaison" value="3"/>
+			<column name="datePossession" value="2011-05-29"/>
+		</insert>
+		<insert tableName="possession">
+			<column name="idPossession" value="4"/>
+			<column name="codePersonne" value="2"/>
+			<column name="codeMaison" value="1"/>
+			<column name="datePossession" value="2019-09-02"/>
+		</insert>
+		<insert tableName="possession">
+			<column name="idPossession" value="5"/>
+			<column name="codePersonne" value="1"/>
+			<column name="codeMaison" value="4"/>
+			<column name="datePossession" value="2015-09-22"/>
+		</insert>
+		<insert tableName="possession">
+			<column name="idPossession" value="6"/>
+			<column name="codePersonne" value="2"/>
+			<column name="codeMaison" value="4"/>
+			<column name="datePossession" value="2015-09-22"/>
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

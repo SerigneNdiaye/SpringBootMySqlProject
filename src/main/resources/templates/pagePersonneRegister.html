@@ -1,0 +1,65 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Enregistrement d une personne</title>
+		<meta name="vuePersonnes" content="width=device-width, initial-scale=1.0"/>
+		
+		<script type="text/javascript">
+			function effacer() {
+				document.getElementById("personneLoadeeForm").reset();
+			}
+		</script>
+	</head>
+	<body>
+		<!-- Update -->
+		<input type="text" th:value="*{isPersonneLoadee}" />
+		<form id="personneLoadeeFormUpdate" action="#" th:if="true eq ${isPersonneLoadee}" th:object="${personne}" th:action="@{/registerPersonne}" method="POST">
+			qqq <input type="text" th:value="${personne}" />
+			<input type="text" name="idPersonne" th:value="${personne.idPersonne}"/>
+			<table >
+				<tr>
+					<td> Nom : </td>
+					<td><input type="text" name="nomPersonne"  th:value="*{nom}" placeholder="Entrer un nom"/></td>
+				</tr>
+				<tr>
+					<td> Prenom : </td>
+					<td><input type="text" name="prenomPersonne" th:value="*{prenom}" placeholder="Entrer un prenom"/></td>
+				</tr>
+				<tr>
+					<td> Telephone : </td>
+					<td><input type="text" name="telephonePersonne" th:value="*{telephone}" placeholder="Entrer un numero de tel."/></td>
+				</tr>
+				<tr>
+					<td> <input type="reset" name="cancel"/> </td>
+					<td><input type="submit" name="enregistrer"/></td>
+				</tr>
+			</table>
+			<!--  <a href="pageRegisterMaison.html">Entrer une maison</a> -->
+		</form>
+		
+		<!-- Save -->
+	 	<form id="personneLoadeeFormSave" action="#" th:if="false eq ${isPersonneLoadee}" th:action="@{/registerPersonne}" method="POST">
+		
+		<input type="text" name="idPersonne" th:value="NULL"/>
+		
+			<table>
+				<tr>
+					<td> Nom : </td>
+					<td><input type="text" name="nomPersonne" placeholder="Entrer un nom"/></td>
+				</tr>
+				<tr>
+					<td> Prenom : </td>
+					<td><input type="text" name="prenomPersonne" placeholder="Entrer un prenom"/></td>
+				</tr>
+				<tr>
+					<td> Telephone : </td>
+					<td><input type="text" name="telephonePersonne" placeholder="Entrer un numero de tel."/></td>
+				</tr>
+				<tr>
+					<td> <input type="reset" name="cancel"/> </td>
+					<td><input type="submit" name="enregistrer"/></td>
+				</tr>
+			</table>
+			<!--  <a href="pageRegisterMaison.html">Entrer une maison</a> -->
+		</form>
+	</body>
+</html>

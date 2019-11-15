@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<meta name="vueMaison" content="width=device-width, initial-scale=1.0"/>
+	<link href="../static/css/presentation.css" th:href="@{/css/presentation.css}" rel="stylesheet" />
+	<body>
+		<h1> A Completer...</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>IdMaison</th>
+					<th>Adresse</th>
+					<th>Superficie</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${maison.idMaison}"/>
+					<td th:text="${maison.adresse}"/>
+					<td th:text="${maison.superficie}"/>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

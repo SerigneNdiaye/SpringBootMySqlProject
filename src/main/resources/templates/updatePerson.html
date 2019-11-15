@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Enregistrement d une personne</title>
+		<meta name="vuePersonnes" content="width=device-width, initial-scale=1.0"/>
+	</head>
+	<body>
+		<!-- Update -->
+		<form action="#" th:object="${personne}" th:action="@{/updatePerson}" method="POST">
+			<input type="hidden" name="idPersonne" th:field="*{idPersonne}" />
+			<table >
+				<tr>
+					<td> Nom : </td>
+					<td><input type="text" name="nomPersonne"  th:field="*{nom}" placeholder="Entrer un nom"/></td>
+				</tr>
+				<tr>
+					<td> Prenom : </td>
+					<td><input type="text" name="prenomPersonne" th:field="*{prenom}" placeholder="Entrer un prenom"/></td>
+				</tr>
+				<tr>
+					<td> Telephone : </td>
+					<td><input type="text" name="telephonePersonne" th:field="*{telephone}" placeholder="Entrer un numero de tel."/></td>
+				</tr>
+				<tr>
+					<td> <input type="reset" name="Renitialiser"/> </td>
+					<td><input type="submit" name="Modifier"/></td>
+				</tr>
+			</table>
+			<!--  <a href="pageRegisterMaison.html">Entrer une maison</a> -->
+		</form>
+		
+	</body>
+</html>

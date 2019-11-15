@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<meta name="vuePersonnes" content="width=device-width, initial-scale=1.0"/>
+	<link href="../static/css/presentation.css" th:href="@{/css/presentation.css}" rel="stylesheet"/>
+	<body>
+		<h1>Personnes</h1>
+		<br/>
+		<form action="#" th:action="@{/searchPerson}" method="GET">
+			<input type="text" name="query" th:value="${query}"/>
+			<input type="submit" name="Search"/>
+		</form>
+		<a th:href="@{/registerPerson}">Ajouter Personne</a>
+		<br/>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nom</th>
+					<th>Prenom</th>
+					<th>Telephone</th>
+					<th>Lien suppression</th>
+				</tr>
+			</thead>
+			<tbody th:if="${not #lists.isEmpty(lstPersonnes)}">
+				<tr th:each="pers : ${lstPersonnes}">
+					<td><a th:text="${pers.idPersonne}" th:href="@{/editPerson/{id}(id=${pers.idPersonne})}"></a></td>
+					<td th:text="${pers.nom}"/>
+					<td th:text="${pers.prenom}"/>
+					<td th:text="${pers.telephone}"/>
+					<td><a th:text="Supprimer" th:href="@{/deletePerson/{id}(id=${pers.idPersonne})}"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
